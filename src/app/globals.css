@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --primary-red: rgb(184, 10, 52);
+  --accent-coral: rgb(239, 105, 104);
+  --blue: rgb(13, 79, 140);
+  --dark-text: rgb(35, 30, 30);
+  --light-gray: rgb(243, 243, 243);
+  --white: rgb(255, 255, 255);
+  --yellow-cta: #ffd800;
+  --background: #ffffff;
+  --foreground: rgb(35, 30, 30);
+  --font-heading: 'Montserrat', 'Poppins', system-ui, sans-serif;
+  --font-body: 'Work Sans', 'Open Sans', system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary-red: var(--primary-red);
+  --color-accent-coral: var(--accent-coral);
+  --color-blue: var(--blue);
+  --color-dark-text: var(--dark-text);
+  --color-light-gray: var(--light-gray);
+  --color-yellow-cta: var(--yellow-cta);
+  --font-sans: var(--font-body);
+  --font-montserrat: var(--font-heading);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Work Sans', 'Open Sans', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-red);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-coral);
+}
