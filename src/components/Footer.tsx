@@ -111,7 +111,7 @@ export default function Footer() {
                 <li key={commission.name}>
                   <Link
                     href={commission.href}
-                    className="text-gray-400 hover:text-white hover:text-[rgb(239,105,104)] transition-colors text-sm"
+                    className="text-gray-400 hover:text-[rgb(239,105,104)] transition-colors text-sm"
                   >
                     {commission.name}
                   </Link>
@@ -129,7 +129,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-gray-400 hover:text-white hover:text-[rgb(239,105,104)] transition-colors text-sm"
+                  className="text-gray-400 hover:text-[rgb(239,105,104)] transition-colors text-sm"
                 >
                   Anasayfa
                 </Link>
@@ -137,7 +137,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#hakkimizda"
-                  className="text-gray-400 hover:text-white hover:text-[rgb(239,105,104)] transition-colors text-sm"
+                  className="text-gray-400 hover:text-[rgb(239,105,104)] transition-colors text-sm"
                 >
                   Hakkımızda
                 </Link>
@@ -145,7 +145,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#faaliyetler"
-                  className="text-gray-400 hover:text-white hover:text-[rgb(239,105,104)] transition-colors text-sm"
+                  className="text-gray-400 hover:text-[rgb(239,105,104)] transition-colors text-sm"
                 >
                   Faaliyetler
                 </Link>
@@ -153,7 +153,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#haberler"
-                  className="text-gray-400 hover:text-white hover:text-[rgb(239,105,104)] transition-colors text-sm"
+                  className="text-gray-400 hover:text-[rgb(239,105,104)] transition-colors text-sm"
                 >
                   Haberler
                 </Link>
@@ -161,7 +161,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#iletisim"
-                  className="text-gray-400 hover:text-white hover:text-[rgb(239,105,104)] transition-colors text-sm"
+                  className="text-gray-400 hover:text-[rgb(239,105,104)] transition-colors text-sm"
                 >
                   İletişim
                 </Link>
