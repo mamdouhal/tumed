@@ -6,11 +6,29 @@ A modern, fully responsive website for TUMED (Türkiye Mezunları Derneği) buil
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Framework**: Next.js 16.0.4 with App Router & Turbopack
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **Runtime**: React 19.2.0
 - **Fonts**: Montserrat, Work Sans, Poppins (via Google Fonts)
 - **Icons**: Custom SVG icons
+
+## 📦 Dependencies
+
+### Production Dependencies
+- **next**: ^16.0.4 - The React framework for production
+- **react**: ^19.2.0 - JavaScript library for building user interfaces
+- **react-dom**: ^19.2.0 - React package for working with the DOM
+
+### Development Dependencies
+- **@tailwindcss/postcss**: ^4 - PostCSS plugin for Tailwind CSS
+- **@types/node**: ^20 - TypeScript definitions for Node.js
+- **@types/react**: ^19 - TypeScript definitions for React
+- **@types/react-dom**: ^19 - TypeScript definitions for React DOM
+- **eslint**: ^9 - Linting utility for JavaScript and TypeScript
+- **eslint-config-next**: 16.0.4 - ESLint configuration for Next.js
+- **tailwindcss**: ^4 - Utility-first CSS framework
+- **typescript**: ^5 - TypeScript language
 
 ## 🎨 Design System
 

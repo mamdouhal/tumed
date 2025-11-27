@@ -1,35 +1,73 @@
 import Image from "next/image";
+import { prisma } from "@/lib/prisma";
 
-export default function News() {
-  const newsItems = [
-    {
-      id: 1,
-      category: "Etkinlik",
-      title: "2024 Mezunlar Buluşması Başarıyla Gerçekleştirildi",
-      excerpt:
-        "Dünya genelinden 500'den fazla mezunumuzun katılımıyla gerçekleştirilen buluşmamızda...",
-      image: "https://picsum.photos/600/400?random=6",
-      date: "15 Kasım 2024",
-    },
-    {
-      id: 2,
-      category: "Duyuru",
-      title: "Yeni İşbirliği Anlaşması İmzalandı",
-      excerpt:
-        "Türkiye'nin önde gelen üniversiteleriyle yeni işbirliği protokolleri imzalandı...",
-      image: "https://picsum.photos/600/400?random=7",
-      date: "10 Kasım 2024",
-    },
-    {
-      id: 3,
-      category: "Haber",
-      title: "Mezunlarımızdan Başarı Hikayeleri",
-      excerpt:
-        "Farklı ülkelerden mezunlarımızın ilham verici başarı hikayelerini sizlerle paylaşıyoruz...",
-      image: "https://picsum.photos/600/400?random=8",
-      date: "5 Kasım 2024",
-    },
-  ];
+export default async function News() {
+  // Fetch real news from database
+  let newsItems;
+  
+  try {
+    newsItems = await prisma.haber.findMany({
+      orderBy: {
+        publishDate: "desc",
+      },
+      take: 3,
+    });
+  } catch (error) {
+    console.error("Failed to fetch news:", error);
+    newsItems = [];
+  }
+
+  // Fallback to placeholders if no news exist
+  if (newsItems.length === 0) {
+    newsItems = [
+      {
+        id: "1",
+        category: "Etkinlik",
+        title: "2024 Mezunlar Buluşması Başarıyla Gerçekleştirildi",
+        content:
+          "Dünya genelinden 500'den fazla mezunumuzun katılımıyla gerçekleştirilen buluşmamızda...",
+        imageUrl: "https://picsum.photos/600/400?random=6",
+        publishDate: new Date("2024-11-15"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: "2",
+        category: "Duyuru",
+        title: "Yeni İşbirliği Anlaşması İmzalandı",
+        content:
+          "Türkiye'nin önde gelen üniversiteleriyle yeni işbirliği protokolleri imzalandı...",
+        imageUrl: "https://picsum.photos/600/400?random=7",
+        publishDate: new Date("2024-11-10"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: "3",
+        category: "Haber",
+        title: "Mezunlarımızdan Başarı Hikayeleri",
+        content:
+          "Farklı ülkelerden mezunlarımızın ilham verici başarı hikayelerini sizlerle paylaşıyoruz...",
+        imageUrl: "https://picsum.photos/600/400?random=8",
+        publishDate: new Date("2024-11-05"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ];
+  }
+
+  const formatDate = (date: Date) => {
+    return new Date(date).toLocaleDateString("tr-TR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  // Get first 150 characters of content as excerpt
+  const getExcerpt = (content: string) => {
+    return content.length > 150 ? content.substring(0, 150) + "..." : content;
+  };
 
   const getCategoryColor = (category: string) => {
     switch (category) {
@@ -64,7 +102,7 @@ export default function News() {
               {/* Image */}
               <div className="relative h-52 overflow-hidden">
                 <Image
-                  src={item.image}
+                  src={item.imageUrl || "https://picsum.photos/600/400?random=6"}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -81,12 +119,12 @@ export default function News() {
 
               {/* Content */}
               <div className="p-6">
-                <span className="text-sm text-gray-500">{item.date}</span>
+                <span className="text-sm text-gray-500">{formatDate(item.publishDate)}</span>
                 <h3 className="text-lg font-bold text-[rgb(35,30,30)] mt-2 mb-3 font-[var(--font-montserrat)] line-clamp-2 group-hover:text-[rgb(184,10,52)] transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 text-sm line-clamp-3 mb-4">
-                  {item.excerpt}
+                  {getExcerpt(item.content)}
                 </p>
                 <button className="flex items-center gap-2 text-[rgb(184,10,52)] font-medium text-sm hover:text-[rgb(239,105,104)] transition-colors">
                   Devamını Oku

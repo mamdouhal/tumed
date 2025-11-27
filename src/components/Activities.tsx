@@ -1,30 +1,45 @@
 import Image from "next/image";
+import { prisma } from "@/lib/prisma";
 
-export default function Activities() {
-  const activities = [
+export default async function Activities() {
+  // Fetch real activities from database
+  const faaliyetler = await prisma.faaliyet.findMany({
+    take: 6,
+    orderBy: { createdAt: 'desc' },
+  });
+
+  // Use fetched activities or fallback to placeholder
+  const activities = faaliyetler.length > 0 ? faaliyetler.map((f, idx) => ({
+    id: f.id,
+    title: f.title,
+    description: f.description,
+    category: f.category,
+    image: f.imageUrl || "https://picsum.photos/800/600?random=" + idx,
+    large: idx % 3 === 0,
+  })) : [
     {
-      id: 1,
+      id: "1",
       title: "Kurumsal Ziyaretler",
+      description: "Kurumsal ziyaretler ve işbirlikleri",
+      category: "Kurumsal",
       image: "https://picsum.photos/800/600?random=2",
       large: true,
     },
     {
-      id: 2,
+      id: "2",
       title: "Akademik İşbirlikleri",
+      description: "Üniversiteler arası işbirliği",
+      category: "Akademik",
       image: "https://picsum.photos/600/600?random=3",
       large: false,
     },
     {
-      id: 3,
+      id: "3",
       title: "Kültürel Etkinlikler",
+      description: "Kültürel ve sosyal etkinlikler",
+      category: "Kültürel",
       image: "https://picsum.photos/600/600?random=4",
       large: false,
-    },
-    {
-      id: 4,
-      title: "Networking Buluşmaları",
-      image: "https://picsum.photos/800/600?random=5",
-      large: true,
     },
   ];
 
